@@ -40,7 +40,7 @@ with st.sidebar:
     st.title("Mochammad Daffa Putra Karyudi")
 
     # Image
-    st.image("e-commerce.png", output_format="PNG")
+    st.image(os.path.abspath("e-commerce.png"), output_format="PNG")
 
     # Date Range
     start_date, end_date = st.date_input(
