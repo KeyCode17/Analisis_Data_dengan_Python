@@ -3,6 +3,7 @@ import os
 import numpy as np
 import pandas as pd 
 import seaborn as sns
+from PIL import Image
 import streamlit as st
 import matplotlib.pyplot as plt
 from scipy.stats import shapiro
@@ -40,7 +41,7 @@ with st.sidebar:
     st.title("Mochammad Daffa Putra Karyudi")
 
     # Image
-    st.image(os.path.abspath("e-commerce.png"), output_format="PNG")
+    st.image(Image.open(os.path.abspath("e-commerce.png")), output_format="PNG")
 
     # Date Range
     start_date, end_date = st.date_input(
