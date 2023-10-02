@@ -11,6 +11,8 @@ from MyModule import AnalyzeData
 from mpl_toolkits.basemap import Basemap
 from matplotlib.patches import ConnectionPatch
 
+dirloc = os.path.dirname(os.path.abspath(__file__))
+
 # Dataset
 datetime_cols = ["order_approved_at", "order_delivered_carrier_date", "order_delivered_customer_date", "order_estimated_delivery_date", "order_purchase_timestamp", "shipping_limit_date"]
 
