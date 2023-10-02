@@ -1,5 +1,6 @@
 # Import Library
 import os
+import sys
 import numpy as np
 import pandas as pd 
 import seaborn as sns
@@ -7,7 +8,7 @@ from PIL import Image
 import streamlit as st
 import matplotlib.pyplot as plt
 from scipy.stats import shapiro
-from MyModule import AnalyzeData
+from MyModule import AnalyzeData, Generate
 from mpl_toolkits.basemap import Basemap
 from matplotlib.patches import ConnectionPatch
 
@@ -47,19 +48,42 @@ with st.sidebar:
     st.image(Image.open(dirloc + '/e-commerce.png'), output_format="PNG")
 
 
-    # Date Range
-    start_date, end_date = st.date_input(
-        label="Pilih jangka waktu",
-        value=[Acc_min_date, Acc_max_date],
+    # Start Date
+    start_date = st.date_input(
+        label="Pilih tanggal awal",
+        value=Acc_min_date,
         min_value=Acc_min_date,
         max_value=Acc_max_date
     )
+    
+    # End Date
+    end_date = st.date_input(
+        label="Pilih tanggal akhir",
+        value=Acc_max_date,
+        min_value=start_date if start_date else Acc_min_date,
+        max_value=Acc_max_date
+    )
+    
+# Check if both start and end dates are selected
+if start_date and end_date:
+    # Title
+    st.title("E-Commerce Dashboard")
+    # Perform your data analysis or any other actions using the selected dates here
+else:
+    st.warning("Please select both start and end dates.")
+    sys.exit()
+
 
 df_Acc = Acc_all_df[(Acc_all_df["order_approved_at"] >= str(start_date)) & 
                  (Acc_all_df["order_approved_at"] <= str(end_date))]
 
 df_NotAcc = Not_Acc_all_df[(Not_Acc_all_df["order_approved_at"] >= str(start_date)) & 
                  (Not_Acc_all_df["order_approved_at"] <= str(end_date))]
+
+# Check if both DataFrames are empty
+if df_Acc.empty and df_NotAcc.empty:
+    st.warning("No data available for the selected date range.")
+    sys.exit()
 
 # Create an instance of AnalyzeData
 analyzer_Acc = AnalyzeData(df_Acc)
@@ -83,9 +107,6 @@ data, data_SP = analyzer_Acc.data()
 data_frames = [analyzer_Acc.grouped()]
 
 grouped = statanalyzer_Acc.ACC_data2018()
-
-# Title
-st.title("E-Commerce Dashboard")
 
 # Header
 st.header("Perbandingan Penjualan")
@@ -179,7 +200,7 @@ with tab1:
 	con.set_linewidth(4)
 
 	st.pyplot(fig)
-    
+
 # Extract payment types and their counts
 counts = data_SP.values
 
