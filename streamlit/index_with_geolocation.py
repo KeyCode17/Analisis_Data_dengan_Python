@@ -14,8 +14,8 @@ from matplotlib.patches import ConnectionPatch
 # Dataset
 datetime_cols = ["order_approved_at", "order_delivered_carrier_date", "order_delivered_customer_date", "order_estimated_delivery_date", "order_purchase_timestamp", "shipping_limit_date"]
 
-Acc_all_df = pd.read_csv(os.path.abspath("dataset/Acc_AllData.csv"))
-Not_Acc_all_df = pd.read_csv(os.path.abspath("dataset/NotAcc_AllData.csv"))
+Acc_all_df = pd.read_csv(dirloc + "/dataset/Acc_AllData.csv")
+Not_Acc_all_df = pd.read_csv(dirloc + "/dataset/NotAcc_AllData.csv")
 
 Acc_all_df.sort_values(by="order_approved_at", inplace=True)
 Acc_all_df.reset_index(inplace=True)
@@ -41,7 +41,8 @@ with st.sidebar:
     st.title("Mochammad Daffa Putra Karyudi")
 
     # Image
-    st.image(Image.open(os.path.abspath("e-commerce.png")), output_format="PNG")
+    st.image(Image.open(dirloc + '/e-commerce.png'), output_format="PNG")
+
 
     # Date Range
     start_date, end_date = st.date_input(
@@ -312,8 +313,8 @@ st.pyplot(plt)
 # Geolokasi
 st.header('Geolokasi dari tiap customer yang mendaftar')
 
-customer = pd.read_csv(os.path.abspath("dataset/customers_dataset.csv"))
-geolocation = pd.read_csv(os.path.abspath("dataset/geolocation_dataset.csv"))
+customer = pd.read_csv(os.path.abspath(dirloc + "/dataset/customers_dataset.csv"))
+geolocation = pd.read_csv(os.path.abspath(dirloc + "/dataset/geolocation_dataset.csv"))
 
 location = pd.merge(
     left=customer,
