@@ -93,8 +93,16 @@ st.header("Perbandingan Penjualan")
 # Pie Chart Perbandingan Penjualan
 sizes = [Acc_Uniqe_ID, NotAcc_Uniqe_ID]
 labels = 'Sells Accepted', 'Sells Declined'
-colors = ['#66b3ff', '#ff9999']  
-explode = (0.1, 0.2)  
+colors = ['#66b3ff', '#ff9999'] 
+
+# Create variable for length
+length = len(sizes)
+
+# Create an instance of the generate class
+generator = Generate(length)
+
+# Generate explode tuple using the generate_tuple method
+explode = generator.generate_tuple()
 
 fig, ax = plt.subplots()
 wedges, texts, autotexts = ax.pie(sizes, labels=labels, autopct='%1.1f%%', colors=colors, 
@@ -171,18 +179,24 @@ with tab1:
 	con.set_linewidth(4)
 
 	st.pyplot(fig)
+    
+# Extract payment types and their counts
+counts = data_SP.values
+
+length = len(counts)
+
+# Create an instance of the generate class
+generator = Generate(length)
+
+# Generate explode tuple using the generate_tuple method
+explode = generator.generate_tuple()
 
 with tab2:
 	st.subheader('Distribusi dengan Pembagian Tipe Pembayaran')
 
-	# Extract payment types and their counts
-	counts = data_SP.values
-
 	# Custom colors for the slices
 	colors = ['#c2c2f0', '#99ff99', '#66b3ff', '#ff9999']
 	labels = data_SP.index.get_level_values('payment_type')
-	# Explode values to separate slices
-	explode = (0.05, 0, 0.1, 0.15)
 
 	# Create a pie chart
 	plt.figure(figsize=(8, 8))  # Set the figure size

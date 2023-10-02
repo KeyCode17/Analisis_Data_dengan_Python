@@ -90,3 +90,22 @@ class AnalyzeData:
 		grouped = grouped['order_id'].reset_index(name='Count').set_index(['Purchase Timestamp', 'Product Category'])
 		return grouped
 
+class Generate:
+    def __init__(self, counts):
+        self.counts = counts
+
+    def generate_tuple(self):
+        explode_values = []
+
+        if self.counts > 2:
+            for i in range(self.counts):
+                explode_values.append(i * 0.05)
+            explode_values[-1] += 0.05
+            explode_tuple = tuple(explode_values)
+            return explode_tuple
+
+        if self.counts <= 2:
+            for i in range(self.counts):
+                explode_values.append((i + 1) * 0.1)
+            explode_tuple = tuple(explode_values)
+            return explode_tuple
