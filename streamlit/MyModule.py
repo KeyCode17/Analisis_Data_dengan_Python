@@ -56,11 +56,11 @@ class AnalyzeData:
 		data_comb[['count_cust', 'count_sell']] = minmax_scaler(data_comb, ['count_cust', 'count_sell'])
 		return data_comb
 
-	def ACC_data2019(self):
-		ACC_data2019 = self.df[(self.df['order_purchase_timestamp'].dt.year == 2018)].drop_duplicates(subset=['order_id','product_category_name_english'], keep='first')
-		ACC_data2019.rename(columns={'order_purchase_timestamp': 'Purchase Timestamp'}, inplace=True)
-		ACC_data2019.rename(columns={'product_category_name_english': 'Product Category'}, inplace=True)
-		grouped = ACC_data2019.groupby([ACC_data2019['Purchase Timestamp'].dt.month,'Product Category']).count()
+	def ACC_data2018(self):
+		ACC_data2018 = self.df[(self.df['order_purchase_timestamp'].dt.year == 2018)].drop_duplicates(subset=['order_id','product_category_name_english'], keep='first')
+		ACC_data2018.rename(columns={'order_purchase_timestamp': 'Purchase Timestamp'}, inplace=True)
+		ACC_data2018.rename(columns={'product_category_name_english': 'Product Category'}, inplace=True)
+		grouped = ACC_data2018.groupby([ACC_data2018['Purchase Timestamp'].dt.month,'Product Category']).count()
 		# Define a dictionary to map month numbers to month names
 		month_map = {
 		    1: 'January',

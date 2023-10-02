@@ -63,6 +63,9 @@ df_NotAcc = Not_Acc_all_df[(Not_Acc_all_df["order_approved_at"] >= str(start_dat
 # Create an instance of AnalyzeData
 analyzer_Acc = AnalyzeData(df_Acc)
 
+# Create an instance of Statis AnalyzeData
+statanalyzer_Acc = AnalyzeData(Acc_all_df)
+
 # Call the numunique method on the instance
 Acc_Uniqe_ID = analyzer_Acc.numunique()
 
@@ -78,7 +81,7 @@ data, data_SP = analyzer_Acc.data()
 # Membuat Array Data yang Digunakan untuk data_frames
 data_frames = [analyzer_Acc.grouped()]
 
-grouped = analyzer_Acc.ACC_data2019()
+grouped = statanalyzer_Acc.ACC_data2018()
 
 # Title
 st.title("E-Commerce Dashboard")
@@ -278,7 +281,7 @@ for i, df in enumerate(data_frames):
 st.pyplot(plt)
 
 # Tren Penjualan
-st.header('Tren penjualan produk berdasarkan produk kategori (Penjualan > 300)')
+st.header('Tren penjualan produk pada tahun 2018 berdasarkan produk kategori (Penjualan > 300)')
 
 df_reset = grouped.reset_index()
 
