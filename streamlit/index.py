@@ -1,19 +1,20 @@
 # Import Library
-import streamlit as st
-import pandas as pd 
+import os
 import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.patches import ConnectionPatch
-from scipy.stats import shapiro
+import pandas as pd 
 import seaborn as sns
-from mpl_toolkits.basemap import Basemap
+import streamlit as st
+import matplotlib.pyplot as plt
+from scipy.stats import shapiro
 from MyModule import AnalyzeData
+from mpl_toolkits.basemap import Basemap
+from matplotlib.patches import ConnectionPatch
 
 # Dataset
 datetime_cols = ["order_approved_at", "order_delivered_carrier_date", "order_delivered_customer_date", "order_estimated_delivery_date", "order_purchase_timestamp", "shipping_limit_date"]
 
-Acc_all_df = pd.read_csv("./dataset_streamlit/Acc_AllData.csv")
-Not_Acc_all_df = pd.read_csv("./dataset_streamlit/NotAcc_AllData.csv")
+Acc_all_df = pd.read_csv(os.path.abspath("dataset_streamlit/Acc_AllData.csv"))
+Not_Acc_all_df = pd.read_csv(os.path.abspath("dataset_streamlit/NotAcc_AllData.csv"))
 
 Acc_all_df.sort_values(by="order_approved_at", inplace=True)
 Acc_all_df.reset_index(inplace=True)
