@@ -12,8 +12,8 @@ from MyModule import AnalyzeData
 # Dataset
 datetime_cols = ["order_approved_at", "order_delivered_carrier_date", "order_delivered_customer_date", "order_estimated_delivery_date", "order_purchase_timestamp", "shipping_limit_date"]
 
-Acc_all_df = pd.read_csv("../dataset/Acc_AllData.csv")
-Not_Acc_all_df = pd.read_csv("../dataset/NotAcc_AllData.csv")
+Acc_all_df = pd.read_csv("./dataset_streamlit/Acc_AllData.csv")
+Not_Acc_all_df = pd.read_csv("./dataset_streamlit/NotAcc_AllData.csv")
 
 Acc_all_df.sort_values(by="order_approved_at", inplace=True)
 Acc_all_df.reset_index(inplace=True)
@@ -310,8 +310,8 @@ st.pyplot(plt)
 # Geolokasi
 st.header('Geolokasi dari tiap customer yang mendaftar')
 
-customer = pd.read_csv("../dataset/customers_dataset.csv")
-geolocation = pd.read_csv("../dataset/geolocation_dataset.csv")
+customer = pd.read_csv("./dataset_streamlit/customers_dataset.csv")
+geolocation = pd.read_csv("./dataset_streamlit/geolocation_dataset.csv")
 
 location = pd.merge(
     left=customer,
