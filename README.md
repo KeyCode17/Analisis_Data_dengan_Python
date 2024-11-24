@@ -1,4 +1,4 @@
-# Dicoding-Belajar_Analisis_Data_dengan_Python
+# Belajar_Analisis_Data_dengan_Python
 Link Streamlit Cloud : 
 - [Ecommerce Dashboard(With Maps)](https://ecommercewithmaps.streamlit.app)
 - [Ecommerce Dashboard(Without Maps)](https://ecommercewithoutmaps.streamlit.app)
